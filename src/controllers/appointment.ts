@@ -52,6 +52,11 @@ export const getAppointmentsByUserId = async (req: Request, res: Response, next:
         const appointments = await Prisma.appointment.findMany({
             where: {
                 userId: user.id
+            },
+            include: {
+                user: true,
+                doctor: true,
+                slot: true,
             }
         });
     
@@ -74,6 +79,11 @@ export const getAppointmentsByDoctorId = async (req: Request, res: Response, nex
         const appointments = await Prisma.appointment.findMany({
             where: {
                 doctorId: doctor.id
+            },
+            include: {
+                user: true,
+                doctor: true,
+                slot: true,
             }
         });
     
